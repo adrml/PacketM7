@@ -1,13 +1,30 @@
 ********************Commands to configure secure routing on cisco switches********************
-enable
-configure terminal
-interface FastEthernet ^/^
-switchport mode access 
+conf t
+interface FastEthernet 0/1
+switchport mode access
+no switchport port-security maximum 1
+no switchport port-security violation shutdown
+no switchport port-security mac-address sticky
+no switchport port-security
+exit
+
+!make this config persistent or write
+copy running-config startup-config
+
+
+
+********************V2.0-Commands to configure secure routing on cisco switches********************
+conf t
+interface FastEthernet 0/1
+switchport mode access
 switchport port-security maximum 1
+! numero limite de direcciones MAC seguras
 switchport port-security violation shutdown
+! si detecta un host ilegal cierra el puerto
 switchport port-security mac-address sticky
+! Mac del switch automatica
 switchport port-security
 exit
 
-!make this config persistent
+!make this config persistent or write
 copy running-config startup-config
