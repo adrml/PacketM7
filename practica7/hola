@@ -1,0 +1,27 @@
+access-list 100   permit ip any any
+access-list 100   permit tcp any any eq ftp
+access-list 100   permit tcp any any eq smtp
+access-list 100   permit tcp any any eq 53
+access-list 100   permit udp any any eq 53
+access-list 100   permit tcp any any eq www
+access-list 103   permit ip any 192.168.10.0 255.255.255.0
+access-list 103   permit icmp any any echo-reply
+access-list 103   permit tcp any eq www any
+access-list 103   permit tcp any eq 53 any
+access-list 103   permit udp any eq 53 any
+access-list 103   permit tcp any eq smtp any
+access-list 106   permit ip any 192.168.6.0 255.255.255.0
+access-list 106   permit icmp any any echo-reply
+access-list 106   permit tcp any eq www any
+access-list 106   permit tcp any eq smtp any
+access-list 106   permit tcp any eq 53 any
+access-list 106   permit udp any eq 53 any
+access-list 106   permit tcp any host 192.168.6.5 eq 53
+access-list 106   permit tcp any host 192.168.6.5 eq www
+access-list 106   permit tcp any host 192.168.6.5 eq smtp
+access-list 106   permit udp any host 192.168.6.5 eq 53
+
+!
+access-group 100 in interface inside
+access-group 103 in interface dmz
+access-group 106 in interface outside
